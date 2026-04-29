@@ -1,0 +1,29 @@
+# LangChain Qwen3 Integration — Python dependencies
+# Requires: Python >= 3.10
+# Usage: pip install -r requirements.txt
+
+# ── Core LangChain ──────────────────────────────────────────────
+langchain-core>=0.3.0
+langchain>=0.3.0
+langchain-community>=0.3.0
+
+# ── Alibaba Cloud DashScope — ChatQwen / ChatQwQ (recommended) ──
+# Official LangChain integration for Qwen series models
+# Docs: https://docs.langchain.com/oss/python/integrations/chat/qwen
+langchain-qwq>=0.2.0
+
+# ── Local Ollama — ChatOllama (no API key, runs on your GPU/CPU) ─
+# Also install Ollama: https://ollama.com/download
+# Then: ollama pull qwen3:32b
+langchain-ollama>=0.1.0
+
+# ── OpenRouter — ChatOpenRouter (routing to Qwen3-397B etc.) ──
+langchain-openrouter>=0.2.0
+
+# ── OpenAI client (required by langchain-openrouter & langchain-qwq) ──
+openai>=1.70.0
+
+# ── Utilities ───────────────────────────────────────────────────
+pydantic>=2.0
+python-dotenv>=1.0          # loads .env files
+aiohttp>=3.9               # async HTTP (optional, for streaming)
