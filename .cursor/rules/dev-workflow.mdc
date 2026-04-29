@@ -1,0 +1,246 @@
+---
+description: 自然语言开发流程管理 - 自动操作 Linear 和 Git
+alwaysApply: true
+---
+
+# 开发流程管理规则
+
+## 项目配置（修改这里以适配不同项目）
+
+```yaml
+project:
+  name: "项目名称"                    # Linear 项目名称
+  team: "LIX"                        # Linear Team Key
+  repo: "https://github.com/2863018802/VibeCoding.git"  # Git 仓库地址
+
+# 可用状态映射
+status:
+  started: "In Progress"
+  进行中: "In Progress"
+  完成: "Completed"
+  完成啦: "Completed"
+  没做完: "Canceled"
+  取消: "Canceled"
+  待办: "Backlog"
+  todo: "Backlog"
+  backlog: "Backlog"
+
+# 优先级映射
+priority:
+  urgent: 1    # 紧急
+  紧急: 1
+  high: 2      # 高
+  高: 2
+  normal: 3    # 普通
+  普通: 3
+  medium: 3
+  low: 4       # 低
+  低: 4
+```
+
+---
+
+## 口语意图识别与自动操作
+
+### 1. 开始做某功能
+**触发词**: "开始做"、"着手"、"着手做"、"我要做"、"开发"、"实现"
+
+**自动执行**:
+1. 在 Linear 项目中创建 Issue（如果不存在）
+2. 更新状态为 `started`
+3. 推荐 Git 分支命名: `{type}/{issue-id}-{简短描述}`
+   - 功能: `feature/LIX-123-login-system`
+   - 修复: `fix/LIX-456-login-bug`
+   - 重构: `refactor/LIX-789-auth-module`
+4. 提示创建分支命令: `git checkout -b feature/LIX-123-login-system`
+
+**示例处理**:
+- 输入: "开始做登录系统功能"
+- 输出:
+  - 创建 Issue: "登录系统功能开发"
+  - 状态: In Progress
+  - 建议分支: `feature/LIX-124-login-system`
+  - 命令: `git checkout -b feature/LIX-124-login-system`
+
+---
+
+### 2. 完成某功能
+**触发词**: "完成了"、"做完了"、"搞定了"、"完成了 xxx"、"搞定 xxx"
+
+**自动执行**:
+1. 查找对应的 Linear Issue
+2. 更新状态为 `completed`
+3. 建议提交信息格式: `{type}: {简短描述} (#issue-id)`
+4. 推荐创建 PR 的标题格式
+
+**示例处理**:
+- 输入: "完成了登录系统"
+- 输出:
+  - 更新 Issue: "登录系统功能开发" → Completed
+  - 建议提交: `feat: add login system (#LIX-124)`
+  - 建议 PR: `[LIX-124] feat: add login system`
+
+---
+
+### 3. 暂停/取消任务
+**触发词**: "先不做"、"暂停"、"取消"、"没做完"
+
+**自动执行**:
+1. 更新状态为 `canceled`
+
+---
+
+### 4. 查看进度
+**触发词**: "进度"、"完成了多少"、"状态"、"还剩什么"
+
+**自动执行**:
+1. 查询 Linear 项目中各状态的 Issue 数量
+2. 列出进行中的任务
+
+---
+
+### 5. 创建任务/TODO
+**触发词**: "新建"、"创建"、"添加任务"、"TODO"、"加个 TODO"、"同步计划"
+
+**自动执行**:
+1. 提取任务标题和描述
+2. 在 Linear 项目中创建 Issue
+3. 设置合适的优先级
+
+**示例处理**:
+- 输入: "添加一个 TODO：实现用户注册功能"
+- 输出:
+  - 创建 Issue: "实现用户注册功能"
+  - 状态: Backlog
+  - 优先级: Medium
+
+---
+
+### 6. 同步 Markdown 计划到 Linear
+**触发词**: "同步计划"、"解析 markdown"、"从 md 创建"、"解析计划"
+
+**输入格式**:
+```markdown
+## Phase 1: 基础架构
+- 完成数据库设计
+- 搭建后端框架
+
+## Phase 2: 核心功能
+- 实现用户认证
+- 开发 API 接口
+```
+
+**自动执行**:
+1. 解析 Markdown 中的 `##` 标题作为父 Issue（Phase）
+2. 解析 `-` 列表项作为子 Issue
+3. 在 Linear 中创建层级结构
+4. Phase 作为父 Issue（Backlog 状态）
+5. 子任务作为子 Issue（Backlog 状态）
+
+**示例处理**:
+- 输入上面的 Markdown 计划
+- 输出:
+  - 创建 Issue: "Phase 1: 基础架构"（父）
+    - 创建 Issue: "完成数据库设计"（子）
+    - 创建 Issue: "搭建后端框架"（子）
+  - 创建 Issue: "Phase 2: 核心功能"（父）
+    - 创建 Issue: "实现用户认证"（子）
+    - 创建 Issue: "开发 API 接口"（子）
+  - 建议分支: `feature/LIX-125-phase1-infrastructure`
+
+**Markdown 解析规则**:
+- `#` 一级标题 → 项目级 Issue
+- `##` 二级标题 → 父 Issue（Phase）
+- `###` 三级标题 → 子 Issue
+- `-` 或 `*` 列表项 → 子任务
+- `[ ]` 或 `[x]` → 保留勾选状态
+- `>数字` 或 `!数字` → 优先级标记（高/紧急）
+
+---
+
+### 6. 指派任务
+**触发词**: "指派给"、"交给"、"让 xxx 做"
+
+**自动执行**:
+1. 更新 Issue 的 assignee
+2. 可以使用用户名、邮箱或 "me"
+
+---
+
+### 7. 设置截止日期
+**触发词**: "截止"、"deadline"、"完成日期"、"什么时候"
+
+**自动执行**:
+1. 提取日期信息
+2. 更新 Issue 的 dueDate
+
+---
+
+## Git 分支类型规范
+
+| 类型 | 用途 | 示例 |
+|------|------|------|
+| `feature/` | 新功能 | `feature/LIX-123-user-auth` |
+| `fix/` | Bug 修复 | `fix/LIX-456-login-error` |
+| `refactor/` | 重构 | `refactor/LIX-789-auth-module` |
+| `docs/` | 文档 | `docs/LIX-101-api-guide` |
+| `test/` | 测试 | `test/LIX-102-auth-tests` |
+| `chore/` | 杂项 | `chore/LIX-103-update-deps` |
+
+---
+
+## Git 提交信息规范
+
+```
+{type}: {简短描述} (#{issue-id})
+
+可选 body:
+{详细说明}
+```
+
+**类型**:
+- `feat`: 新功能
+- `fix`: 修复 Bug
+- `refactor`: 重构
+- `docs`: 文档
+- `style`: 格式调整
+- `test`: 测试
+- `chore`: 构建/工具
+
+**示例**:
+```
+feat: add login page with OAuth support (#LIX-123)
+
+- 实现用户名密码登录
+- 集成 GitHub OAuth
+- 添加登录表单验证
+```
+
+---
+
+## 操作流程模板
+
+### 开始新功能
+1. 解析用户输入 → 提取功能描述
+2. 创建 Linear Issue → 设置状态为 In Progress
+3. 生成分支名 → `feature/{team}-{id}-{slug}`
+4. 输出创建分支命令
+
+### 完成功能
+1. 更新 Linear Issue → 状态改为 Completed
+2. 生成提交信息
+3. 提示创建 PR
+
+### 代码审查后合并
+1. 更新相关 Issue 状态
+2. 提示删除远程分支命令
+
+---
+
+## 注意事项
+
+1. **模糊匹配**: 如果用户提到的功能不明确，先搜索现有 Issue 再确认
+2. **自动补全**: 根据项目现有 Issue 补全用户意图
+3. **确认执行**: 对于重要操作（如关闭 Issue），先确认再执行
+4. **上下文记忆**: 记住当前正在做的任务，便于关联操作
+5. **错误处理**: 如果 Linear 操作失败，提供备选方案或错误原因
