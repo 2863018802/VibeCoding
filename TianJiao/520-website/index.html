@@ -51,12 +51,17 @@
 
     /* ===== PHOTO WALL DECORATIONS ===== */
     .photo-wall {
-      position: fixed;
-      pointer-events: none;
+      position: absolute;
+      cursor: pointer;
       z-index: 1;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      box-shadow:
+        0 0 0 2px rgba(255, 215, 0, 0.7),
+        0 0 0 4px rgba(255, 105, 180, 0.4),
+        0 4px 16px rgba(0,0,0,0.4);
+      opacity: 1;
+      filter: none;
     }
 
     .photo-wall img {
@@ -66,144 +71,91 @@
       display: block;
     }
 
-    /* Screen 1 photos */
+    /* ── Screen 1 ── */
     .pw-s1-tl {
-      top: calc(var(--safe-top) + 16px);
-      left: 12px;
-      width: 52px;
-      height: 52px;
+      top: 40px; left: 8px;
+      width: 72px; height: 96px;
       transform: rotate(-8deg);
-      opacity: 0.55;
-      filter: blur(1px);
       animation: floatA 6s ease-in-out infinite;
     }
-
     .pw-s1-br {
-      bottom: calc(var(--safe-bottom) + 20px);
-      right: 14px;
-      width: 44px;
-      height: 58px;
-      transform: rotate(10deg);
-      opacity: 0.45;
-      filter: blur(0.5px);
+      top: 40px; right: 8px;
+      width: 68px; height: 68px;
+      transform: rotate(7deg);
       animation: floatB 7s ease-in-out infinite;
     }
 
-    /* Screen 2 photos */
-    .pw-s2-bl {
-      bottom: 10%;
-      left: 8px;
-      width: 42px;
-      height: 56px;
-      transform: rotate(-12deg);
-      opacity: 0.35;
-      filter: blur(1.5px);
+    /* ── Screen 2 ── */
+    .pw-s2-tl {
+      bottom: 30px; left: 8px;
+      width: 64px; height: 88px;
+      transform: rotate(-11deg);
       animation: floatC 8s ease-in-out infinite;
     }
-
-    .pw-s2-tr {
-      top: 15%;
-      right: 10px;
-      width: 38px;
-      height: 50px;
-      transform: rotate(7deg);
-      opacity: 0.3;
-      filter: blur(1px);
+    .pw-s2-br {
+      top: 60px; right: 14px;
+      width: 72px; height: 72px;
+      transform: rotate(9deg);
       animation: floatA 5s ease-in-out infinite reverse;
     }
-
-    .pw-s2-mid {
-      top: 42%;
-      right: 6px;
-      width: 46px;
-      height: 46px;
-      transform: rotate(4deg);
-      opacity: 0.25;
-      filter: blur(2px);
+    .pw-s2-ml {
+      bottom: 30px; right: 8px;
+      width: 56px; height: 80px;
+      transform: rotate(5deg);
       animation: floatB 9s ease-in-out infinite;
     }
 
-    /* Screen 3 photos */
+    /* ── Screen 3 ── */
     .pw-s3-tl {
-      top: calc(var(--safe-top) + 10px);
-      left: 10px;
-      width: 48px;
-      height: 62px;
-      transform: rotate(-6deg);
-      opacity: 0.4;
-      filter: blur(0.8px);
+      top: 50px; left: 10px;
+      width: 76px; height: 104px;
+      transform: rotate(-7deg);
       animation: floatC 7s ease-in-out infinite;
     }
-
     .pw-s3-br {
-      bottom: 8%;
-      right: 12px;
-      width: 50px;
-      height: 50px;
-      transform: rotate(9deg);
-      opacity: 0.35;
-      filter: blur(1.2px);
+      top: 50px; right: 10px;
+      width: 64px; height: 64px;
+      transform: rotate(10deg);
       animation: floatA 6s ease-in-out infinite reverse;
     }
 
-    /* Screen 4 photos */
+    /* ── Screen 4 ── */
     .pw-s4-tl {
-      top: calc(var(--safe-top) + 14px);
-      left: 8px;
-      width: 40px;
-      height: 40px;
-      transform: rotate(-10deg);
-      opacity: 0.45;
-      filter: blur(0.6px);
+      bottom: 30px; left: 12px;
+      width: 60px; height: 84px;
+      transform: rotate(-13deg);
       animation: floatB 7s ease-in-out infinite;
     }
-
     .pw-s4-br {
-      bottom: 6%;
-      right: 10px;
-      width: 36px;
-      height: 52px;
+      bottom: 30px; right: 12px;
+      width: 72px; height: 100px;
       transform: rotate(8deg);
-      opacity: 0.38;
-      filter: blur(1px);
       animation: floatC 8s ease-in-out infinite reverse;
     }
 
-    /* Screen 5 photos */
+    /* ── Screen 5 ── */
     .pw-s5-1 {
-      top: calc(var(--safe-top) + 20px);
-      right: 20px;
-      width: 54px;
-      height: 54px;
-      transform: rotate(-5deg);
-      opacity: 0.5;
-      filter: blur(0.4px);
+      top: 10px; left: 6px;
+      width: 80px; height: 80px;
+      transform: rotate(-6deg);
       animation: floatA 6s ease-in-out infinite;
-      border: 2px solid rgba(255, 215, 0, 0.4);
     }
-
     .pw-s5-2 {
-      bottom: 30%;
-      left: 10px;
-      width: 40px;
-      height: 58px;
-      transform: rotate(11deg);
-      opacity: 0.4;
-      filter: blur(0.6px);
+      top: 10px; right: 6px;
+      width: 68px; height: 96px;
+      transform: rotate(12deg);
       animation: floatB 7s ease-in-out infinite;
-      border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+    .pw-s5-3 {
+      bottom: 10px; right: 6px;
+      width: 60px; height: 60px;
+      transform: rotate(-10deg);
+      animation: floatC 5s ease-in-out infinite reverse;
     }
 
-    .pw-s5-3 {
-      bottom: calc(var(--safe-bottom) + 16px);
-      right: 16px;
-      width: 46px;
-      height: 46px;
-      transform: rotate(-9deg);
-      opacity: 0.45;
-      filter: blur(0.5px);
-      animation: floatC 5s ease-in-out infinite reverse;
-      border: 2px solid rgba(255, 215, 0, 0.35);
+    /* photo-wall clickable */
+    .photo-wall {
+      cursor: pointer;
     }
 
     @keyframes floatA {
@@ -1123,6 +1075,28 @@
       animation: fadeInUp 0.8s ease-out 0.6s both;
     }
 
+    .cert-eason-image {
+      margin-top: 20px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 45, 120, 0.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    }
+
+    .cert-eason-caption {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 1s forwards;
+    }
+
     /* Remove old cert-container styling, use cert-inner instead */
     .cert-container {
       display: contents;
@@ -1134,66 +1108,70 @@
       .lyric-item { font-size: 18px; }
       .quiz-card { padding: 28px 20px; }
       .cert-names { font-size: 24px; }
+      .cert-eason-image { width: 160px; height: 160px; }
     }
 
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 2px; }
+
+    /* ===== DECORATION PHOTO LIGHTBOX ===== */
+    .deco-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 5, 16, 0.96);
+      z-index: 300;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--safe-top) + 20px) 24px calc(var(--safe-bottom) + 20px);
+      cursor: pointer;
+    }
+    .deco-lightbox.active {
+      display: flex;
+    }
+    .deco-lightbox img {
+      max-width: 90vw;
+      max-height: 80svh;
+      border-radius: 12px;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+    .deco-lightbox-close {
+      position: absolute;
+      top: calc(var(--safe-top) + 16px);
+      right: 20px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .deco-lightbox-hint {
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 3px;
+    }
   </style>
 </head>
 <body>
 
-<!-- ===================== PHOTO WALL DECORATIONS ===================== -->
-<!-- Screen 1 -->
-<div class="photo-wall pw-s1-tl">
-  <img src="eason/eason1.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s1-br">
-  <img src="eason/eason2.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-
-<!-- Screen 2 -->
-<div class="photo-wall pw-s2-bl">
-  <img src="eason/eason3.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s2-tr">
-  <img src="eason/eason4.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s2-mid">
-  <img src="eason/eason5.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-
-<!-- Screen 3 -->
-<div class="photo-wall pw-s3-tl">
-  <img src="eason/eason6.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s3-br">
-  <img src="eason/eason7.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-
-<!-- Screen 4 -->
-<div class="photo-wall pw-s4-tl">
-  <img src="eason/eason8.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s4-br">
-  <img src="eason/eason9.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-
-<!-- Screen 5 -->
-<div class="photo-wall pw-s5-1">
-  <img src="eason/eason10.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s5-2">
-  <img src="eason/eason11.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="photo-wall pw-s5-3">
-  <img src="eason/eason12.jpg" alt="Eason" onerror="this.parentElement.style.display='none'">
-</div>
-
 <!-- ===================== SCREEN 1: ENTRY ===================== -->
 <section class="screen" id="s1">
   <div class="spotlight"></div>
+
+  <!-- decorations -->
+  <div class="photo-wall pw-s1-tl"><img src="images/gallery/1.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="photo-wall pw-s1-br"><img src="images/gallery/2.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
 
   <div class="days-count" id="daysCount">192</div>
   <div class="days-label">我们在一起的天数</div>
@@ -1212,6 +1190,9 @@
 
 <!-- ===================== SCREEN 2: LYRICS ===================== -->
 <section class="screen" id="s2">
+  <div class="photo-wall pw-s2-tl"><img src="images/gallery/3.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="photo-wall pw-s2-br"><img src="images/gallery/4.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="photo-wall pw-s2-ml"><img src="images/gallery/5.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
   <div class="lyrics-title">— 陈奕迅 · 歌词墙 —</div>
 
   <div class="lyric-item" data-intersect>
@@ -1234,6 +1215,8 @@
 
 <!-- ===================== SCREEN 3: LOVE LETTER ===================== -->
 <section class="screen" id="s3">
+  <div class="photo-wall pw-s3-tl"><img src="images/gallery/6.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="photo-wall pw-s3-br"><img src="images/gallery/7.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
   <div class="letter-container">
     <div class="letter-name" id="letterName"></div>
 
@@ -1254,24 +1237,58 @@
 <div class="gallery-overlay" id="galleryOverlay">
   <button class="gallery-close" id="galleryClose">✕</button>
   <div class="gallery-track" id="galleryTrack">
+    <!-- Couple photos (photo wall) -->
     <div class="gallery-slide">
-      <img src="images/gallery/1_concert.jpg" alt="音乐会现场" loading="lazy">
+      <img src="images/gallery/couple_photos/1.jpg" alt="合照 1" loading="lazy">
     </div>
     <div class="gallery-slide">
-      <img src="images/gallery/2_stage.jpg" alt="舞台灯光" loading="lazy">
+      <img src="images/gallery/couple_photos/2.jpg" alt="合照 2" loading="lazy">
     </div>
     <div class="gallery-slide">
-      <img src="images/gallery/3_music.jpg" alt="音乐时刻" loading="lazy">
+      <img src="images/gallery/couple_photos/3.jpg" alt="合照 3" loading="lazy">
+    </div>
+    <!-- Eason photos -->
+    <div class="gallery-slide">
+      <img src="images/gallery/1.jpg" alt="陈奕迅 1" loading="lazy">
     </div>
     <div class="gallery-slide">
-      <img src="images/gallery/4_voice.jpg" alt="深情演唱" loading="lazy">
+      <img src="images/gallery/2.jpg" alt="陈奕迅 2" loading="lazy">
     </div>
     <div class="gallery-slide">
-      <img src="images/gallery/5_lights.jpg" alt="光影交织" loading="lazy">
+      <img src="images/gallery/3.jpg" alt="陈奕迅 3" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/4.jpg" alt="陈奕迅 4" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/5.jpg" alt="陈奕迅 5" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/6.jpg" alt="陈奕迅 6" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/7.jpg" alt="陈奕迅 7" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/8.jpg" alt="陈奕迅 8" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/9.jpg" alt="陈奕迅 9" loading="lazy">
+    </div>
+    <div class="gallery-slide">
+      <img src="images/gallery/10.jpg" alt="陈奕迅 10" loading="lazy">
     </div>
   </div>
   <div class="gallery-dots" id="galleryDots">
     <div class="gallery-dot active"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
     <div class="gallery-dot"></div>
     <div class="gallery-dot"></div>
     <div class="gallery-dot"></div>
@@ -1283,7 +1300,9 @@
     
 <!-- ===================== SCREEN 4: Q&A ===================== -->
 <section class="screen" id="s4">
-  <div class="quiz-title">— 关于我们的6道题 —</div>
+  <div class="photo-wall pw-s4-tl"><img src="images/gallery/8.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="photo-wall pw-s4-br"><img src="images/gallery/9.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
+  <div class="quiz-title">— 关于我们的3道题 —</div>
 
   <div class="quiz-progress" id="quizProgress">
     <div class="quiz-dot active" id="dot0"></div>
@@ -1298,6 +1317,7 @@
 </section>
 <!-- ===================== SCREEN 5: CERTIFICATE ===================== -->
 <section class="screen" id="s5">
+  <div class="photo-wall pw-s5-1"><img src="images/gallery/10.jpg" alt="" onerror="this.parentElement.style.display='none'"></div>
   <div class="cert-wrapper">
     <div class="cert-inner">
       <div class="vinyl-wrapper">
@@ -1314,12 +1334,13 @@
         <span class="cert-divider-line"></span>
       </div>
       <div class="cert-quote">
-        "除非你是我，<br>才可与我常在。"
+        "这个世界最坏罪名，<br>叫太易动情，<br>但我喜欢这罪名。"
       </div>
       <div class="cert-footer">颁发日期：2026年5月20日</div>
+      <img class="cert-eason-image" src="images/gallery/11.jpg" alt="Eason Chan">
+      <div class="cert-eason-caption">祝你们长长久久 💙</div>
     </div>
   </div>
-
 
 
 </section>
@@ -1337,9 +1358,16 @@
   <button class="reward-close" id="rewardClose">继续看下去 ❤️</button>
 </div>
 
+<!-- ===================== DECORATION PHOTO LIGHTBOX ===================== -->
+<div class="deco-lightbox" id="decoLightbox" role="dialog" aria-modal="true">
+  <button class="deco-lightbox-close" id="decoLightboxClose">✕</button>
+  <img id="decoLightboxImg" src="" alt="装饰照片">
+  <div class="deco-lightbox-hint">点击任意处关闭</div>
+</div>
+
 <!-- ===================== MUSIC ===================== -->
 <audio id="bgMusic" loop preload="none">
-  <source src="music/eason.mp3" type="audio/mpeg">
+  <source src="music/wurenzhijing.mp3" type="audio/mpeg">
 </audio>
 <div class="music-toggle" id="musicToggle" aria-label="音乐开关">🎵</div>
 
@@ -1355,8 +1383,8 @@
     '你比任何人都重要，',
     '谢谢你来爱我，',
     '我也会永远爱你。',
-    '最后，想把林夕写的这句歌词送给你：',
-    '"除非你是我，才可与我常在。"',
+    '最后，想把《无人之境》的一句歌词送给你：',
+    '"这个世界最坏罪名，叫太易动情，但我喜欢这罪名。"',
     '我不敢说永远，',
     '但我很确定——',
     '每一个有你的今天，',
@@ -1396,7 +1424,7 @@
   updateDays();
 
   // ===== TYPEWRITER (Screen 1) =====
-  const TW_TEXT = '"除非你是我，才可与我常在。"';
+  const TW_TEXT = '"这个世界最坏罪名，叫太易动情，但我喜欢这罪名。"';
   let twIdx = 0;
   const twEl = $('#typewriter');
   if (twEl) {
@@ -1560,6 +1588,36 @@
       }
     });
   }
+
+  // ===== DECORATION PHOTO LIGHTBOX =====
+  const decoLightbox = $('#decoLightbox');
+  const decoLightboxImg = $('#decoLightboxImg');
+  const decoLightboxClose = $('#decoLightboxClose');
+
+  document.querySelectorAll('.photo-wall').forEach(pw => {
+    pw.addEventListener('click', () => {
+      const img = pw.querySelector('img');
+      if (!img || !img.src) return;
+      if (decoLightboxImg) decoLightboxImg.src = img.src;
+      if (decoLightbox) decoLightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeDecoLightbox() {
+    if (decoLightbox) decoLightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  decoLightboxClose && decoLightboxClose.addEventListener('click', closeDecoLightbox);
+  decoLightbox && decoLightbox.addEventListener('click', (e) => {
+    if (e.target === decoLightbox) closeDecoLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && decoLightbox && decoLightbox.classList.contains('active')) {
+      closeDecoLightbox();
+    }
+  });
 
   // ===== QUIZ =====
   let quizIdx = 0;
